@@ -8,3 +8,4 @@ Announcement forum for all campus events
 - [ ] Report for announcements to be taken down
 - [ ] Section for campus politics? Stop going to my room. LOL
 - [ ] Shared authentication system with `orderpool` and other campus applications?
+- [ ] Notifications?
