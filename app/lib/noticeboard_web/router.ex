@@ -19,6 +19,7 @@ defmodule NoticeboardWeb.Router do
 
     get "/", PageController, :index
     get "/users/new", UserController, :new
+    # get "/users/:id", UserController, :show
     post "/users", UserController, :create
   end
 

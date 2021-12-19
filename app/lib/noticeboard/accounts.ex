@@ -19,4 +19,14 @@ defmodule Noticeboard.Accounts do
     |> User.changeset(attrs)
     |> Repo.insert()
   end
+
+  def change_registration(%User{} = user, attrs) do
+    User.registration_changeset(user, attrs)
+  end
+
+  def register_user(attrs \\ %{}) do
+    %User{}
+    |> User.registration_changeset(attrs)
+    |> Repo.insert()
+  end
 end
