@@ -1,0 +1,18 @@
+<h1>Show Notice</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @notice.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @notice.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.notice_path(@conn, :edit, @notice) %></span> |
+<span><%= link "Back", to: Routes.notice_path(@conn, :index) %></span>

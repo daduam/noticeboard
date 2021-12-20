@@ -23,6 +23,12 @@ defmodule NoticeboardWeb.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
+  scope "/notices", NoticeboardWeb do
+    pipe_through [:browser, :authenticate_user]
+
+    resources "/", NoticeController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", NoticeboardWeb do
   #   pipe_through :api

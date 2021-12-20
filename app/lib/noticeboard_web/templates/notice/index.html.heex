@@ -1,0 +1,28 @@
+<h1>Listing Notices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for notice <- @notices do %>
+    <tr>
+      <td><%= notice.title %></td>
+      <td><%= notice.description %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.notice_path(@conn, :show, notice) %></span>
+        <span><%= link "Edit", to: Routes.notice_path(@conn, :edit, notice) %></span>
+        <span><%= link "Delete", to: Routes.notice_path(@conn, :delete, notice), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Notice", to: Routes.notice_path(@conn, :new) %></span>
