@@ -15,6 +15,7 @@ defmodule Noticeboard.Accounts.User do
     user
     |> cast(attrs, [:name, :username])
     |> validate_required([:name, :username])
+    |> unique_constraint(:username, message: "username has already been taken")
   end
 
   def registration_changeset(user, attrs) do
