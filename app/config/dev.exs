@@ -4,8 +4,8 @@ import Config
 config :noticeboard, Noticeboard.Repo,
   username: "postgres",
   password: "postgres",
-  database: "noticeboard_dev",
   hostname: "localhost",
+  database: "noticeboard_dev",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -22,7 +22,7 @@ config :noticeboard, NoticeboardWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "HIO3cAhfClBV0cGy7X1idu+EfN5PDFY/oAa2xwnGixnAHzdvULNrXVnsThXDBz0p",
+  secret_key_base: "qr4H2m0Zdp2UALg63A9TGZjpBBTZpRnveNo7KeIdqZgtJDLrAJN3bOjbenhCcUos",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}

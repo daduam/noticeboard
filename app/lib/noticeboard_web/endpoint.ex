@@ -7,7 +7,7 @@ defmodule NoticeboardWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_noticeboard_key",
-    signing_salt: "W9z32LbX"
+    signing_salt: "AuNvidoU"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
