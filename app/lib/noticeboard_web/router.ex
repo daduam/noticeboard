@@ -8,7 +8,6 @@ defmodule NoticeboardWeb.Router do
     plug :put_root_layout, {NoticeboardWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug NoticeboardWeb.Auth
   end
 
   pipeline :api do
@@ -19,14 +18,6 @@ defmodule NoticeboardWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/users", UserController, only: [:new, :show, :create]
-    resources "/sessions", SessionController, only: [:new, :create, :delete]
-  end
-
-  scope "/notices", NoticeboardWeb do
-    pipe_through [:browser, :authenticate_user]
-
-    resources "/", NoticeController
   end
 
   # Other scopes may use custom stacks.
@@ -46,6 +37,7 @@ defmodule NoticeboardWeb.Router do
 
     scope "/" do
       pipe_through :browser
+
       live_dashboard "/dashboard", metrics: NoticeboardWeb.Telemetry
     end
   end

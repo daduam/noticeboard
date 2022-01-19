@@ -8,8 +8,8 @@ import Config
 config :noticeboard, Noticeboard.Repo,
   username: "postgres",
   password: "postgres",
-  database: "noticeboard_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
+  database: "noticeboard_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
@@ -17,7 +17,7 @@ config :noticeboard, Noticeboard.Repo,
 # you can enable the server option below.
 config :noticeboard, NoticeboardWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "zfJKu7FJxer6lyn72n7g7V3fRpLhVLuGWZ+dIDsdtxFhBaznwdTC09fhXOOTnuig",
+  secret_key_base: "vyAlVj+DpBVA0cppte3sKN9mfjeq3G/oM/0t42JupN5zfPVu/kIn4BxwCBj3aCdH",
   server: false
 
 # In test we don't send emails.
