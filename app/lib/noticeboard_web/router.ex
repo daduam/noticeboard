@@ -1,6 +1,8 @@
 defmodule NoticeboardWeb.Router do
   use NoticeboardWeb, :router
 
+  import NoticeboardWeb.UserAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,7 @@ defmodule NoticeboardWeb.Router do
     plug :put_root_layout, {NoticeboardWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_user
   end
 
   pipeline :api do
@@ -52,5 +55,38 @@ defmodule NoticeboardWeb.Router do
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  ## Authentication routes
+
+  scope "/", NoticeboardWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    get "/u/register", UserRegistrationController, :new
+    post "/u/register", UserRegistrationController, :create
+    get "/u/login", UserSessionController, :new
+    post "/u/login", UserSessionController, :create
+    get "/u/reset-password", UserResetPasswordController, :new
+    post "/u/reset-password", UserResetPasswordController, :create
+    get "/u/reset-password/:token", UserResetPasswordController, :edit
+    put "/u/reset-password/:token", UserResetPasswordController, :update
+  end
+
+  scope "/", NoticeboardWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/u/settings", UserSettingsController, :edit
+    put "/u/settings", UserSettingsController, :update
+    get "/u/settings/confirm-email/:token", UserSettingsController, :confirm_email
+  end
+
+  scope "/", NoticeboardWeb do
+    pipe_through [:browser]
+
+    delete "/u/logout", UserSessionController, :delete
+    get "/u/confirm", UserConfirmationController, :new
+    post "/u/confirm", UserConfirmationController, :create
+    get "/u/confirm/:token", UserConfirmationController, :edit
+    post "/u/confirm/:token", UserConfirmationController, :update
   end
 end
