@@ -8,7 +8,8 @@
 import Config
 
 config :noticeboard,
-  ecto_repos: [Noticeboard.Repo]
+  ecto_repos: [Noticeboard.Repo],
+  migration_timestamps: [type: :utc_datetime_usec]
 
 # Configures the endpoint
 config :noticeboard, NoticeboardWeb.Endpoint,
