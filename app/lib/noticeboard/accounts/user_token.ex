@@ -2,6 +2,8 @@ defmodule Noticeboard.Accounts.UserToken do
   use Ecto.Schema
   import Ecto.Query
 
+  @timestamps_opts [type: :utc_datetime_usec]
+
   @hash_algorithm :sha256
   @rand_size 32
 
